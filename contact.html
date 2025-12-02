@@ -203,7 +203,7 @@
                         <div>
                             <h4 class="text-primary mb-4">Get in Touch</h4>
                             <p class="mb-4">Fill out the form below and I'll get back to you as soon as possible.</p>
-                            <form>
+                            <form id="contactForm" onsubmit="sendToWhatsApp(event)">
                                 <div class="row g-4">
                                     <div class="col-12">
                                         <div class="form-floating">
@@ -230,21 +230,39 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <label for="photos" class="form-label">Optional: Upload photos of the job</label>
-                                        <input type="file" class="form-control border-0" id="photos" multiple accept="image/*">
-                                        <small class="text-muted">You can select multiple photos</small>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3">Send Message</button>
+                                        <button class="btn btn-primary w-100 py-3" type="submit">
+                                            <i class="fab fa-whatsapp me-2"></i>Send via WhatsApp
+                                        </button>
                                     </div>
                                     <div class="col-12 text-center">
-                                        <p class="mb-0">Or contact me directly via WhatsApp:</p>
-                                        <a href="https://wa.me/353862706683" target="_blank" class="btn btn-success py-2 px-4 mt-2">
-                                            <i class="fab fa-whatsapp me-2"></i>WhatsApp +353 86 270 6683
+                                        <span class="text-muted">Or email directly:</span>
+                                        <a href="mailto:homefixerservices@gmail.com" class="btn btn-outline-primary ms-2">
+                                            <i class="fas fa-envelope me-2"></i>homefixerservices@gmail.com
                                         </a>
                                     </div>
                                 </div>
                             </form>
+                            
+                            <script>
+                                function sendToWhatsApp(e) {
+                                    e.preventDefault();
+                                    
+                                    var name = document.getElementById('name').value;
+                                    var email = document.getElementById('email').value;
+                                    var phone = document.getElementById('phone').value;
+                                    var message = document.getElementById('message').value;
+                                    
+                                    var whatsappMessage = "Hello! I'm contacting you from your website.%0A%0A";
+                                    whatsappMessage += "*Name:* " + name + "%0A";
+                                    whatsappMessage += "*Email:* " + email + "%0A";
+                                    whatsappMessage += "*Phone:* " + phone + "%0A";
+                                    whatsappMessage += "*Message:* " + message;
+                                    
+                                    var whatsappUrl = "https://wa.me/353862706683?text=" + whatsappMessage;
+                                    
+                                    window.open(whatsappUrl, '_blank');
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
